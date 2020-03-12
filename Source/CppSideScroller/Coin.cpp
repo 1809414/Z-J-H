@@ -16,6 +16,7 @@ ACoin::ACoin()
 	ModifierTrigger->OnComponentBeginOverlap.AddDynamic(this, &ACoin::OnOverlapBegin);
 	RootComponent = ModifierTrigger;
 	//Test comment
+	//SecondComment
 }
 
 // Called when the game starts or when spawned
