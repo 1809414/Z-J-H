@@ -31,4 +31,12 @@ void ACppSideScrollerGameState::ResetGame_Implementation()
 			HealthModifiers[i]->Reset();
 		}
 	}
+
+	for (int i = 0; i < Cameras.Num(); i++)
+	{
+		if (Cameras[i] != nullptr)
+		{
+			Cameras[i]->ResetCamera();
+		}
+	}
 }

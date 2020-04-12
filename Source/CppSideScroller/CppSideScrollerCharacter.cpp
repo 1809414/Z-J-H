@@ -46,7 +46,7 @@ ACppSideScrollerCharacter::ACppSideScrollerCharacter()
 	GetCharacterMovement()->AirControl = 0.80f;
 	GetCharacterMovement()->JumpZVelocity = 1000.f;
 	GetCharacterMovement()->GroundFriction = 3.f;
-	GetCharacterMovement()->MaxWalkSpeed = 600.f;
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
 
 	JumpMaxCount = 2;
@@ -123,6 +123,9 @@ void ACppSideScrollerCharacter::SetupPlayerInputComponent(class UInputComponent*
 	{
 		PlayerInputComponent->BindAction("Restart", IE_Pressed, gameState, &ACppSideScrollerGameState::ResetGame);
 	}	
+
+	PlayerInputComponent->BindAction("Dash", IE_Pressed, this, &ACppSideScrollerCharacter::StartDash);
+	PlayerInputComponent->BindAction("Dash", IE_Released, this, &ACppSideScrollerCharacter::StopDash);
 }
 
 void ACppSideScrollerCharacter::Jump()
@@ -173,6 +176,16 @@ void ACppSideScrollerCharacter::Tick(float deltaSeconds)
 	}
 
 	previousLocation = GetActorLocation();
+}
+
+void ACppSideScrollerCharacter::StartDash()
+{
+	GetCharacterMovement()->MaxWalkSpeed = dashSpeed;
+}
+
+void ACppSideScrollerCharacter::StopDash()
+{
+	GetCharacterMovement()->MaxWalkSpeed = walkSpeed;
 }
 
 #pragma optimize("", on)

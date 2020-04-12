@@ -33,6 +33,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = FallDamage)
 	float FallDamageMultiplier;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterMovement)
+	float walkSpeed = 250.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = CharacterMovement)
+	float dashSpeed = 750.0f;
+
 	UFUNCTION(BlueprintCallable, Category = Health)
 	bool IsCharacterAlive() const { return CurrentHealth > 0.0F; }
 
@@ -73,12 +79,15 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float deltaSeconds) override;
 
+	void StartDash();
+	void StopDash();
+
 	ACppSideScrollerCharacter();
 
 	/** Returns SideViewCameraComponent subobject **/
-	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
+	//FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
-	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }	
+	//FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }	
 
 private:
 	FVector previousLocation;

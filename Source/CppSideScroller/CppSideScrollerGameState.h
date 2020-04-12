@@ -7,6 +7,7 @@
 
 #include "Coin.h"
 #include "HealthModifier.h"
+#include "Camera.h"
 
 #include "CppSideScrollerGameState.generated.h"
 
@@ -24,6 +25,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = GameState)
 	TArray<AHealthModifier*> HealthModifiers;
+
+	UPROPERTY(BlueprintReadWrite, Category = GameState)
+	TArray<ACamera*> Cameras;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = GameState)
 	void ResetGame();
